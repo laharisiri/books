@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Finder</title>
+  <link rel="stylesheet" type="text/css" href="#">
+</head>
+<body>
+  <h1>Book Finder</h1>
+  <form action="/dashboard" method="GET">
+    <input type="text" name="search" placeholder="Search for a book">
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Display search results here -->
+  <!-- Display search results here -->
+  <ul>
+    <% books.forEach(book => { %>
+      <li>
+        <h2><%= book.volumeInfo.title %></h2>
+        <p><%= book.volumeInfo.authors.join(', ') %></p>
+        <p><%= book.volumeInfo.description %></p>
+        
+        <% if (book.accessInfo && book.accessInfo.pdf && book.accessInfo.pdf.downloadLink) { %>
+          <a href="<%= book.accessInfo.pdf.downloadLink %>" target="_blank">Download PDF</a>
+        <% } else { %>
+          <p>PDF not available</p>
+        <% } %>
+      </li>
+    <% }); %>
+  </ul>
+  
+
+</body>
+</html>
